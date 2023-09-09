@@ -1,5 +1,9 @@
 const fs = require('fs');
+const http = require('http');
 
+
+///////////////////////////////
+// Files
 //Blocking,Synchronous way//
 
 /*console.log("Hello World");*/
@@ -10,16 +14,9 @@ console.log(textln);
 /*const textout = `this is really awesome: ${textln}.\nCreated on ${Date.now()}`;
 fs.writeFileSync('./txt/output.txt',textout);
 console.log('File written!'); */
-/*
-   
-    
-
-
-    */
 
 //Another Video
 //Non-blocking, Asynchronous way
-
 
 // fs.readFile('./txt/start.txt','utf-8',(err,data1)=>{
 //     fs.readFile(`./txt/${data1}.txt`,'utf-8',(err,data2)=>{
@@ -29,9 +26,18 @@ console.log('File written!'); */
 //             fs.writeFile('./txt/final.txt',`${data2}\n${data3}`,'utf-8',err=>{
 //                 console.log('your file has been written');
 //                 })
-//            });
-        
+//            });       
 //         });
-
 // });
 // console.log('will read file!!');
+
+
+//////////////////////////////////////////
+// Server 
+
+const server = http.createServer((req, res)=>{
+    res.end('Hello Bangladesh');
+});
+server.listen(8000,'127.0.0.1', ()=>{
+    console.log('Here im boss');
+});
