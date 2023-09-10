@@ -1,6 +1,6 @@
 const fs = require('fs');
 const http = require('http');
-
+const url = require('url');
 
 ///////////////////////////////
 // Files
@@ -36,8 +36,23 @@ console.log('File written!'); */
 // Server 
 
 const server = http.createServer((req, res)=>{
-    res.end('Hello Bangladesh');
+    const pathName=req.url;
+
+    if(pathName ==='/' || pathName==='/overview'){
+        res.end('Hello Bangladesh Server From Overview Page');
+    } else if (pathName==='/product'){
+        res.end('Hello Bangladesh Server from product');
+    }else {
+        res.writeHead(404,{
+            'Content-type':'text/html',
+            'my-own-header':'hello-world'
+        });
+        res.end('Page not found!!');
+    }
 });
+
+
 server.listen(8000,'127.0.0.1', ()=>{
-    console.log('Here im boss');
+    console.log('Here im boss staying in console & response from port 8000');
 });
+
