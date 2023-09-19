@@ -41,7 +41,7 @@ const server = http.createServer((req, res)=>{
     if(pathName ==='/' || pathName==='/overview'){
         res.end('Hello Bangladesh Server From Overview Page');
     } else if (pathName==='/product'){
-        res.end('Hello Bangladesh Server from product');
+        res.end('Hello Bangladesh Server from product,Pick your best Product');
     }else {
         res.writeHead(404,{
             'Content-type':'text/html',
