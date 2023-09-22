@@ -19,6 +19,7 @@ console.log('File written!'); */
 //Non-blocking, Asynchronous way
 
 // fs.readFile('./txt/start.txt','utf-8',(err,data1)=>{
+    // if (err) return console.log('Error!! ');
 //     fs.readFile(`./txt/${data1}.txt`,'utf-8',(err,data2)=>{
 //         console.log(data2);
 //         fs.readFile(`./txt/append.txt`,'utf-8',(err,data3)=>{
@@ -42,7 +43,15 @@ const server = http.createServer((req, res)=>{
         res.end('Hello Bangladesh Server From Overview Page');
     } else if (pathName==='/product'){
         res.end('Hello Bangladesh Server from product,Pick your best Product');
-    }else {
+    }
+      else if(pathName==='/api'){
+        fs.readFile(`${__dirname}/dev-data/data.json`,`utf-8`,(err,data) =>{
+            const productData = JSON.parse(data);
+            console.log(productData);
+        })   
+        res.end('API');
+    }
+    else {
         res.writeHead(404,{
             'Content-type':'text/html',
             'my-own-header':'hello-world'
