@@ -35,6 +35,9 @@ console.log('File written!'); */
 
 //////////////////////////////////////////
 // Server 
+const data = fs.readFileSync(`${__dirname}/dev-data/data.json`,`utf-8`);
+const dataObj = JSON.parse(data);
+
 
 const server = http.createServer((req, res)=>{
     const pathName=req.url;
@@ -44,12 +47,9 @@ const server = http.createServer((req, res)=>{
     } else if (pathName==='/product'){
         res.end('Hello Bangladesh Server from product,Pick your best Product');
     }
-      else if(pathName==='/api'){
-        fs.readFile(`${__dirname}/dev-data/data.json`,`utf-8`,(err,data) =>{
-            const productData = JSON.parse(data);
-            console.log(productData);
-        })   
-        res.end('API');
+      else if(pathName==='/api'){    
+        res.writeHead(200,{'Content-type':'application/json'});
+        res.end(data);     
     }
     else {
         res.writeHead(404,{
