@@ -34,7 +34,7 @@ console.log('File written!'); */
 //////////////////////////////////////////
 // Server 
 const replaceTempate=(temp,product)=>{
-    let output = temp.replace(/{%PRODUCTNAME%}/g,product.productName);
+    let output = temp.replace(/{%PRODUCTNAME%}/g,product.productname);
     output = output.replace(/{%IMAGE%}/g,product.image);
     output = output.replace(/{%PRICE%}/g,product.price);
     output = output.replace(/{%FROM%}/g,product.from);
@@ -69,7 +69,7 @@ const server = http.createServer((req, res)=>{
 //product page
 
     } else if (pathname==='/product'){
-        req.writeHead(200,{'Context-type':'text/html'});
+        res.writeHead(200,{'Context-type':'text/html'});
         const product = dataObj[query.id];
         const output = replaceTempate(tempProduct,product);
         res.end(output);
