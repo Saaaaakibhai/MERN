@@ -33,8 +33,8 @@ console.log('File written!'); */
 // console.log('will read file!!');
 //////////////////////////////////////////
 // Server 
-const replaceTempate=(temp,product)=>{
-    let output = temp.replace(/{%PRODUCTNAME%}/g,product.productname);
+const replaceTemplate=(temp,product)=>{
+    let output = temp.replace(/{%PRODUCTNAME%}/g,product.productName);
     output = output.replace(/{%IMAGE%}/g,product.image);
     output = output.replace(/{%PRICE%}/g,product.price);
     output = output.replace(/{%FROM%}/g,product.from);
@@ -57,21 +57,25 @@ const dataObj = JSON.parse(data);
 
 
 const server = http.createServer((req, res)=>{
-    const{query,pathname} = url.parse(req.url,true);
-    
+    const{ query, pathname} = url.parse(req.url,true);
+    // console.log(req.url);
+    // console.log(url.parse(req.url,true))
+    // const pathname = req.url
     //overview page
     if(pathname ==='/' || pathname==='/overview'){
         res.writeHead(200,{'Content-type':'text/html'});
-        const cardsHtml = dataObj.map(el =>replaceTempate(tempCard,el)).join('');
+        const cardsHtml = dataObj.map(el =>replaceTemplate(tempCard,el)).join('');
         const output = tempOverview.replace('{%PRODUCT_CARDS%}',cardsHtml);
         res.end(output);
+
+          
 
 //product page
 
     } else if (pathname==='/product'){
-        res.writeHead(200,{'Context-type':'text/html'});
+        res.writeHead(200, {'Context-type':'text/html'});
         const product = dataObj[query.id];
-        const output = replaceTempate(tempProduct,product);
+        const output = replaceTemplate(tempProduct, product);
         res.end(output);
     }
 
