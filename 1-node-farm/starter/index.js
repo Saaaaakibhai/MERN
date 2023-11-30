@@ -2,6 +2,8 @@ const fs = require('fs');
 const http = require('http');
 const url = require('url');
 const replaceTemplate = require('./modules/replaceTemplate');
+
+
 ///////////////////////////////
 // Files
 //Blocking,Synchronous way//
@@ -55,7 +57,7 @@ const server = http.createServer((req, res)=>{
         const output = tempOverview.replace('{%PRODUCT_CARDS%}',cardsHtml);
         res.end(output);
 
-          
+        
 
 //product page
 
@@ -79,8 +81,6 @@ const server = http.createServer((req, res)=>{
         res.end('Page not found!!');
     }
 });
-
-
 server.listen(8000,'127.0.0.1', ()=>{
     console.log('Here Im boss staying in console & response from port 8000');
 });
