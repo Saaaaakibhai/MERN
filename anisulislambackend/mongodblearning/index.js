@@ -4,6 +4,22 @@ const mongoose = require('mongoose');
 const app = express();
 
 const port = 3002;
+//create product schema
+const productSchema= new mongoose.Schema({
+        title: {
+            type: String,
+            required: true
+        },
+        price: Number,
+        description: String,
+        createdAt: {
+            type: Date,
+            default: Date.now,
+    },
+});
+//create product model
+const Product = mongoose.model("products", productSchema);
+
 // async await issue 
 const connectDB = async () => {
     try {
